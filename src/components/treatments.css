@@ -1,0 +1,52 @@
+/* Tratamientos destacados: fondo Bone, texto Espresso/Taupe, acentos Champagne. */
+.tx { background: var(--bone); color: var(--espresso); scroll-margin-top: var(--nav-h); }
+.tx-wrap { max-width: 1360px; margin: 0 auto; padding: 104px 4.5% 112px; }
+.tx-head { text-align: center; max-width: 680px; margin: 0 auto 56px; }
+.tx-eyebrow { font-size: 13px; line-height: 16px; letter-spacing: 0.3em; font-weight: 400; color: var(--taupe); margin-bottom: 16px; }
+.tx-head h2, .txp h1 { font-family: 'Marcellus', 'Bodoni Moda', Georgia, serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.06em; font-size: clamp(30px, 4.2vw, 56px); line-height: 1.1; color: var(--espresso); margin-bottom: 20px; }
+.tx-rule { display: block; width: 72px; height: 1px; background: var(--champagne); margin: 0 auto 24px; }
+.tx-sub { font-size: 16px; line-height: 26px; color: #6b5d50; }
+
+.tx-stage { position: relative; }
+.tx-track { --gap: 20px; --per: 3; display: flex; gap: var(--gap); list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; cursor: grab; overscroll-behavior-x: contain; }
+.tx-track::-webkit-scrollbar { display: none; }
+.tx-track.dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; user-select: none; }
+.tx-card { flex: 0 0 calc((100% - (var(--per) - 1) * var(--gap)) / var(--per)); scroll-snap-align: start; display: flex; flex-direction: column; background: #ebe3da; border-radius: 0; overflow: hidden; }
+.tx-photo { aspect-ratio: 16 / 9.3; background: var(--sand); overflow: hidden; }
+.tx-photo img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(var(--z, 1)); transform-origin: var(--o, 50% 50%); transition: transform 700ms var(--ease); }
+.tx-card:hover .tx-photo img { transform: scale(calc(var(--z, 1) * 1.04)); }
+.tx-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--champagne); background: var(--sand); }
+.tx-body { display: flex; align-items: flex-start; gap: 28px; flex: 1; padding: 36px 36px 40px; }
+.tx-icon { flex: none; width: 44px; height: 44px; margin-top: 4px; color: #8a7a68; }
+.tx-text { display: flex; flex-direction: column; flex: 1; min-width: 0; height: 100%; }
+.tx-text h3 { font-family: 'Marcellus', Georgia, serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; font-size: 23px; line-height: 30px; white-space: nowrap; color: var(--espresso); margin-bottom: 14px; }
+.tx-text p { font-size: 15px; line-height: 26px; color: #5f5348; margin-bottom: 28px; flex: 1; }
+.tx-link { align-self: flex-start; display: inline-flex; gap: 8px; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em; color: var(--taupe); transition: gap 300ms ease, color 300ms ease; }
+.tx-link:hover { gap: 14px; color: #8a6b3f; }
+
+.tx-arrow { position: absolute; top: 18%; z-index: 2; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bone); color: var(--taupe); border: 1px solid var(--champagne); cursor: pointer; transition: background-color 300ms ease, color 300ms ease, opacity 300ms ease; }
+.tx-arrow:hover:not(:disabled) { background: var(--champagne); color: var(--espresso); }
+.tx-arrow:disabled { opacity: 0; pointer-events: none; }
+.tx-arrow.prev { left: -24px; }
+.tx-arrow.next { right: -24px; }
+
+@media (max-width: 1100px) { .tx-body { gap: 20px; padding: 28px 24px 32px; } .tx-text h3 { font-size: 20px; line-height: 28px; } }
+@media (max-width: 1024px) { .tx-track { --per: 2; } }
+@media (max-width: 640px) {
+  .tx-wrap { padding: 80px 16px; }
+  .tx-head { margin-bottom: 40px; }
+  .tx-track { --per: 1; --gap: 16px; }
+  .tx-body { padding: 28px 24px 32px; }
+  .tx-stage { padding-bottom: 72px; }
+  .tx-arrow { top: auto; bottom: 0; }
+  .tx-arrow.prev { left: calc(50% - 56px); }
+  .tx-arrow.next { right: calc(50% - 56px); }
+}
+@media (prefers-reduced-motion: reduce) { .tx-track { scroll-behavior: auto; } }
+
+/* Página individual */
+.txp { min-height: 100vh; background: var(--bone); color: var(--espresso); padding: 120px 4.5% 80px; max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.txp .tx-link { margin-bottom: 32px; }
+.txp .tx-eyebrow { margin-bottom: 8px; }
+.txp img { width: 100%; max-height: 480px; object-fit: cover; border-radius: 12px; margin: 16px 0 24px; }
+.txp .btn { margin-top: 24px; }

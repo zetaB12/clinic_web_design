@@ -1,15 +1,13 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   CalendarCheck,
-  ClipboardText,
-  Leaf,
   Phone,
-  Stethoscope,
-  UsersThree,
 } from "@phosphor-icons/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ResultsGallery from "./components/ResultsGallery";
+import About from "./components/About";
+import TreatmentsCarousel from "./components/TreatmentsCarousel";
 import "./index.css";
 
 const VIDEO = "/video/paseo-111-scrub-fast.mp4";
@@ -37,56 +35,6 @@ const NAV_OF: Record<string, string> = {
   faq: "resultados",
   resultados: "resultados",
 };
-
-const BENEFITS = [
-  {
-    icon: Stethoscope,
-    t: "Valoración médica de 40 minutos",
-    d: "Un médico revisa tu piel y tu historial antes de proponer cualquier procedimiento.",
-  },
-  {
-    icon: ClipboardText,
-    t: "Plan por escrito el mismo día",
-    d: "Sales de la primera consulta con tratamientos, tiempos y costos detallados, sin letra chica.",
-  },
-  {
-    icon: Leaf,
-    t: "Dosis conservadoras",
-    d: "Empezamos con lo mínimo necesario y te vemos a los 15 días para ajustar si hace falta.",
-  },
-  {
-    icon: UsersThree,
-    t: "El mismo equipo de principio a fin",
-    d: "Te atiende el mismo médico en cada visita, así que no repites tu historia cada vez.",
-  },
-];
-
-const TREATMENTS = [
-  {
-    t: "Toxina botulínica",
-    d: "Suaviza las líneas de expresión de la frente y el contorno de ojos.",
-  },
-  {
-    t: "Ácido hialurónico",
-    d: "Devuelve volumen e hidratación en labios, pómulos y ojeras.",
-  },
-  {
-    t: "Bioestimuladores de colágeno",
-    d: "Mejoran la firmeza de forma gradual durante 8 a 12 semanas.",
-  },
-  {
-    t: "Peeling médico",
-    d: "Unifica el tono y mejora la textura con una descamación controlada.",
-  },
-  {
-    t: "Láser fraccionado",
-    d: "Trata cicatrices de acné y manchas superficiales.",
-  },
-  {
-    t: "Mesoterapia facial",
-    d: "Aporta vitaminas e hidratación directamente en la piel.",
-  },
-];
 
 const STEPS = [
   {
@@ -494,41 +442,9 @@ export default function App() {
         <ScrollHero />
         <Tagline />
 
-        <section className="s-base" id="nosotros">
-          <div className="wrap">
-            <p className="eyebrow reveal">Nosotros</p>
-            <h2 className="title reveal">
-              Medicina estética con criterio médico y sin prisa
-            </h2>
-            <div className="grid g2">
-              {BENEFITS.map((b) => (
-                <article className="card reveal" key={b.t}>
-                  <b.icon size={32} aria-hidden="true" />
-                  <h3>{b.t}</h3>
-                  <p>{b.d}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <About />
 
-        <section className="s-raised" id="tratamientos">
-          <div className="wrap">
-            <p className="eyebrow reveal">Tratamientos</p>
-            <h2 className="title reveal">
-              Seis tratamientos, elegidos según tu piel
-            </h2>
-            <div className="grid g3">
-              {TREATMENTS.map((t, i) => (
-                <article className="card reveal" key={t.t}>
-                  <div className="n">0{i + 1}</div>
-                  <h3>{t.t}</h3>
-                  <p>{t.d}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <TreatmentsCarousel />
 
         <section className="s-base" id="proceso">
           <div className="wrap">
