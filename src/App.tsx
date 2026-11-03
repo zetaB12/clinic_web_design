@@ -363,6 +363,7 @@ export default function App() {
   const [invalid, setInvalid] = useState<"name" | "email" | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState<string>("main");
+  const [scrolled, setScrolled] = useState(false);
   const lockUntil = useRef(0);
 
   // Al hacer clic se marca de inmediato y se ignora el observador mientras dura el scroll suave.
@@ -385,6 +386,29 @@ export default function App() {
     );
     document.querySelectorAll("#main > *").forEach((el) => io.observe(el));
     return () => io.disconnect();
+  }, []);
+
+  // Navbar transparente sobre el hero; sólido al terminar la primera pantalla. setState solo cambia si el valor cambia.
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      // Blanco cuando el video del hero llega a su final (fin del scroll del hero).
+      const t = document.querySelector<HTMLElement>(".hero-track");
+      const end = t ? t.offsetTop + t.offsetHeight - window.innerHeight : 0;
+      setScrolled(window.scrollY >= end - 4);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   // Con el menú móvil abierto se bloquea el scroll y Escape lo cierra.
@@ -426,26 +450,31 @@ export default function App() {
       <a className="skip" href="#main">
         Saltar al contenido
       </a>
-      <nav className="nav" aria-label="Principal">
-        <a className="brand" href="#main" aria-label="Rejuvena, inicio">
-          <img src="/image/logo-nav.png" alt="Rejuvena" />
-        </a>
-        <ul
-          className={menuOpen ? "open" : ""}
-          onClick={() => setMenuOpen(false)}
-        >
-          {NAV.map(([id, label]) => (
-            <li key={id}>
-              <a
-                href={`#${id}`}
-                aria-current={active === id ? "page" : undefined}
-                onClick={() => pick(id)}
-              >
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
+      <nav
+        className={`nav${scrolled || menuOpen ? " is-solid" : ""}`}
+        aria-label="Principal"
+      >
+        <div className="nav-left">
+          <a className="brand" href="#main" aria-label="Rejuvena, inicio">
+            <img src="/image/logo-nav.png" alt="Rejuvena" />
+          </a>
+          <ul
+            className={menuOpen ? "open" : ""}
+            onClick={() => setMenuOpen(false)}
+          >
+            {NAV.map(([id, label]) => (
+              <li key={id}>
+                <a
+                  href={`#${id}`}
+                  aria-current={active === id ? "page" : undefined}
+                  onClick={() => pick(id)}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
         <a className="btn sm" href="#reservar">
           Reservar cita
         </a>
