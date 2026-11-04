@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Sparkle } from "@phosphor-icons/react";
 import { TREATMENTS } from "../data/treatments";
-import "./treatments.css";
+import "../assets/treatments.css";
 
 export default function TreatmentsCarousel() {
   const track = useRef<HTMLUListElement>(null);
@@ -78,8 +78,8 @@ export default function TreatmentsCarousel() {
           <h2 id="tx-title">Tratamientos diseñados para ti</h2>
           <span className="tx-rule" aria-hidden="true" />
           <p className="tx-sub">
-            Procedimientos médicos pensados para realzar tu belleza natural,
-            con precisión y cuidado personalizado.
+            Procedimientos médicos pensados para realzar tu belleza natural, con
+            precisión y cuidado personalizado.
           </p>
         </header>
 
@@ -111,7 +111,11 @@ export default function TreatmentsCarousel() {
                       alt={t.alt ?? t.name}
                       width={574}
                       height={334}
-                      style={{ objectPosition: t.pos, ["--o" as string]: t.pos, ["--z" as string]: t.zoom ?? 1 }}
+                      style={{
+                        objectPosition: t.pos,
+                        ["--o" as string]: t.pos,
+                        ["--z" as string]: t.zoom ?? 1,
+                      }}
                       loading="lazy"
                       decoding="async"
                       draggable={false}
@@ -123,7 +127,12 @@ export default function TreatmentsCarousel() {
                   )}
                 </div>
                 <div className="tx-body">
-                  <t.icon className="tx-icon" size={44} weight="thin" aria-hidden="true" />
+                  <t.icon
+                    className="tx-icon"
+                    size={44}
+                    weight="thin"
+                    aria-hidden="true"
+                  />
                   <div className="tx-text">
                     <h3>{t.name}</h3>
                     <p>{t.description}</p>

@@ -8,7 +8,7 @@ import {
   type ResultCase,
   type TreatmentId,
 } from "../data/results";
-import "./results.css";
+import "../assets/results.css";
 
 type Filter = "all" | TreatmentId;
 

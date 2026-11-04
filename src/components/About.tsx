@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { ArrowRight, Check } from "@phosphor-icons/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import "./about.css";
+import "../assets/about.css";
 
 const POINTS = [
   "Valoración médica de 40 minutos",

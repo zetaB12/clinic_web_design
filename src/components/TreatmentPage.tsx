@@ -1,5 +1,5 @@
 import { TREATMENTS } from "../data/treatments";
-import "./treatments.css";
+import "../assets/treatments.css";
 
 // Página individual /tratamientos/:slug, alimentada por el mismo array de datos.
 export default function TreatmentPage({ slug }: { slug: string }) {
