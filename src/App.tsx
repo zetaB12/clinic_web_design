@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import {
-  CalendarCheck,
-  Phone,
-} from "@phosphor-icons/react";
+import { CalendarCheck, Phone } from "@phosphor-icons/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ResultsGallery from "./components/ResultsGallery";
@@ -49,12 +46,6 @@ const STEPS = [
     t: "Empieza cuando quieras",
     d: "No hay compromiso de iniciar ese día. Agendas el tratamiento solo si te convence.",
   },
-];
-
-const STATS = [
-  { n: "1.847", l: "pacientes atendidos desde 2019" },
-  { n: "4,8 de 5", l: "en 312 reseñas verificadas" },
-  { n: "15 días", l: "hasta tu control de seguimiento" },
 ];
 
 const FAQ = [
