@@ -16,7 +16,9 @@ export default function About() {
 
   useEffect(() => {
     const el = root.current!;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     // Entrada: al cruzar ~25% de la sección se activa .in (CSS hace el resto).
     const io = new IntersectionObserver(
@@ -37,10 +39,27 @@ export default function About() {
     // Parallax suave: las dos fotos se desplazan a distinta velocidad.
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
-      const trigger = { trigger: el, start: "top bottom", end: "bottom top", scrub: 0.6 };
-      gsap.fromTo(".ab-main img", { yPercent: -5 }, { yPercent: 5, ease: "none", scrollTrigger: trigger });
-      gsap.fromTo(".ab-small", { y: 30 }, { y: -30, ease: "none", scrollTrigger: trigger });
-      gsap.fromTo(".ab-leaf", { y: 20 }, { y: -40, ease: "none", scrollTrigger: trigger });
+      const trigger = {
+        trigger: el,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 0.6,
+      };
+      gsap.fromTo(
+        ".ab-main img",
+        { yPercent: -5 },
+        { yPercent: 5, ease: "none", scrollTrigger: trigger },
+      );
+      gsap.fromTo(
+        ".ab-small",
+        { y: 30 },
+        { y: -30, ease: "none", scrollTrigger: trigger },
+      );
+      gsap.fromTo(
+        ".ab-leaf",
+        { y: 20 },
+        { y: -40, ease: "none", scrollTrigger: trigger },
+      );
     }, el);
     return () => {
       io.disconnect();
@@ -54,12 +73,20 @@ export default function About() {
         <div className="ab-visual">
           <span className="ab-blob ab-blob-a" aria-hidden="true" />
           <span className="ab-blob ab-blob-b" aria-hidden="true" />
-          <svg className="ab-line" viewBox="0 0 120 380" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M118 4 H40 Q4 4 4 40 V340 Q4 376 40 376 H70" pathLength="1" />
+          <svg
+            className="ab-line"
+            viewBox="0 0 120 380"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M118 4 H40 Q4 4 4 40 V340 Q4 376 40 376 H70"
+              pathLength="1"
+            />
           </svg>
           <figure className="ab-main">
             <img
-              src={`${import.meta.env.BASE_URL}image/nosotros-1.jpg`}
+              src={`${import.meta.env.BASE_URL}image/nosotros-1.png`}
               alt="Paciente relajada durante un tratamiento facial"
               width={900}
               height={1100}
@@ -69,7 +96,7 @@ export default function About() {
           </figure>
           <figure className="ab-small">
             <img
-              src={`${import.meta.env.BASE_URL}image/nosotros-2.jpg`}
+              src={`${import.meta.env.BASE_URL}image/nosotros-2.png`}
               alt="Manos del especialista durante la valoración"
               width={610}
               height={380}
@@ -80,13 +107,23 @@ export default function About() {
         </div>
 
         <div className="ab-copy">
-          <p className="ab-eyebrow ab-r" style={{ "--d": "0ms" } as React.CSSProperties}>
+          <p
+            className="ab-eyebrow ab-r"
+            style={{ "--d": "0ms" } as React.CSSProperties}
+          >
             NOSOTROS
           </p>
-          <h2 id="ab-title" className="ab-r" style={{ "--d": "100ms" } as React.CSSProperties}>
+          <h2
+            id="ab-title"
+            className="ab-r"
+            style={{ "--d": "100ms" } as React.CSSProperties}
+          >
             Un enfoque más personal de la medicina estética
           </h2>
-          <p className="ab-text ab-r" style={{ "--d": "200ms" } as React.CSSProperties}>
+          <p
+            className="ab-text ab-r"
+            style={{ "--d": "200ms" } as React.CSSProperties}
+          >
             En Rejuvena combinamos criterio médico, precisión y tiempo para
             escucharte. Más de 1.500 pacientes confían en nosotros para realzar
             su belleza natural, sin exageraciones y con un plan claro desde la

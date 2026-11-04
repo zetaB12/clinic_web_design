@@ -23,7 +23,7 @@ export const TREATMENTS: Treatment[] = [
     name: "Toxina botulínica",
     description:
       "Suaviza las líneas de expresión de la frente y el contorno de ojos con un resultado natural.",
-    image: `${import.meta.env.BASE_URL}image/tratamientos/piel.jpg`,
+    image: `${import.meta.env.BASE_URL}image/tratamientos/botox.png`,
     alt: "Cuidado avanzado de la piel del rostro",
     pos: "80% 40%",
   },
@@ -33,20 +33,9 @@ export const TREATMENTS: Treatment[] = [
     name: "Ácido hialurónico",
     description:
       "Devuelve volumen, definición e hidratación en labios, pómulos y ojeras.",
-    image: `${import.meta.env.BASE_URL}image/tratamientos/facial.jpg`,
+    image: `${import.meta.env.BASE_URL}image/tratamientos/acido.png`,
     alt: "Tratamiento de hidratación y volumen facial",
     pos: "85% 70%",
-  },
-  {
-    slug: "pink-glow",
-    icon: Leaf,
-    name: "Pink Glow",
-    description:
-      "Protocolo de luminosidad que unifica el tono y aporta una piel fresca y radiante.",
-    image: `${import.meta.env.BASE_URL}image/tratamientos/piel.jpg`,
-    alt: "Piel luminosa tras un tratamiento de glow",
-    pos: "85% 55%",
-    zoom: 1.7,
   },
   {
     slug: "depilacion-laser",
@@ -54,9 +43,20 @@ export const TREATMENTS: Treatment[] = [
     name: "Depilación láser",
     description:
       "Reducción progresiva y duradera del vello con tecnología segura para tu tipo de piel.",
-    image: `${import.meta.env.BASE_URL}image/tratamientos/cuerpo.jpg`,
+    image: `${import.meta.env.BASE_URL}image/tratamientos/depilacion.png`,
     alt: "Tratamiento corporal con tecnología médica",
     pos: "50% 50%",
+  },
+  {
+    slug: "pink-glow",
+    icon: Leaf,
+    name: "Pink Glow",
+    description:
+      "Protocolo de luminosidad que unifica el tono y aporta una piel fresca y radiante.",
+    image: `${import.meta.env.BASE_URL}image/tratamientos/pink.png`,
+    alt: "Piel luminosa tras un tratamiento de glow",
+    pos: "85% 55%",
+    zoom: 1.7,
   },
   {
     slug: "limpieza-facial",
