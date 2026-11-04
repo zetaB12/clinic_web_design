@@ -395,8 +395,8 @@ section[id] {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 2px;
-  background: var(--accent);
+  height: 1px;
+  background: var(--bone);
   width: 100%;
   transform-origin: left;
   transform: scaleX(0);

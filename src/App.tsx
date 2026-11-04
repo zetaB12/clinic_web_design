@@ -6,6 +6,7 @@ import ResultsGallery from "./components/ResultsGallery";
 import About from "./components/About";
 import TreatmentsCarousel from "./components/TreatmentsCarousel";
 import "./index.css";
+import Header from "./components/Header";
 
 const VIDEO = `${import.meta.env.BASE_URL}video/hero.mp4`;
 
@@ -17,21 +18,6 @@ const TRUST = [
 ];
 
 const fmt = (n: number) => Math.round(n).toLocaleString("en-US");
-
-const NAV = [
-  ["main", "Inicio"],
-  ["nosotros", "Nosotros"],
-  ["tratamientos", "Tratamientos"],
-  ["resultados", "Resultados"],
-  ["reservar", "Contacto"],
-] as const;
-
-// Secciones sin enlace propio cuentan para la entrada del menú que las precede.
-const NAV_OF: Record<string, string> = {
-  proceso: "tratamientos",
-  faq: "resultados",
-  resultados: "resultados",
-};
 
 const STEPS = [
   {
@@ -136,7 +122,8 @@ function ScrollHero() {
     const gesture = ["touchstart", "pointerdown", "scroll", "keydown"] as const;
     const onGesture = () => {
       prime();
-      if (primed) gesture.forEach((e) => window.removeEventListener(e, onGesture));
+      if (primed)
+        gesture.forEach((e) => window.removeEventListener(e, onGesture));
     };
     v.addEventListener("loadedmetadata", prime);
     v.addEventListener("loadeddata", prime);
@@ -339,68 +326,6 @@ export default function App() {
   useReveal();
   const [msg, setMsg] = useState("");
   const [invalid, setInvalid] = useState<"name" | "email" | null>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState<string>("main");
-  const [scrolled, setScrolled] = useState(false);
-  const lockUntil = useRef(0);
-
-  // Al hacer clic se marca de inmediato y se ignora el observador mientras dura el scroll suave.
-  const pick = (id: string) => {
-    setActive(id);
-    lockUntil.current = performance.now() + 1200;
-  };
-
-  // Marca la sección que cruza una franja a ~40% de la altura de la pantalla.
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (!e.isIntersecting || performance.now() < lockUntil.current)
-            return;
-          const id = e.target.id;
-          setActive(NAV_OF[id] ?? (id || "main"));
-        }),
-      { rootMargin: "-40% 0px -55% 0px" },
-    );
-    document.querySelectorAll("#main > *").forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
-
-  // Navbar transparente sobre el hero; sólido al terminar la primera pantalla. setState solo cambia si el valor cambia.
-  useEffect(() => {
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      // Blanco cuando el video del hero llega a su final (fin del scroll del hero).
-      const t = document.querySelector<HTMLElement>(".hero-track");
-      const end = t ? t.offsetTop + t.offsetHeight - window.innerHeight : 0;
-      setScrolled(window.scrollY >= end - 4);
-    };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-
-  // Con el menú móvil abierto se bloquea el scroll y Escape lo cierra.
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) =>
-      e.key === "Escape" && setMenuOpen(false);
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [menuOpen]);
 
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -428,62 +353,12 @@ export default function App() {
       <a className="skip" href="#main">
         Saltar al contenido
       </a>
-      <nav
-        className={`nav${scrolled || menuOpen ? " is-solid" : ""}`}
-        aria-label="Principal"
-      >
-        <div className="nav-left">
-          <a className="brand" href="#main" aria-label="Rejuvena, inicio">
-            <img
-              src={`${import.meta.env.BASE_URL}image/logo-nav.png`}
-              alt="Rejuvena"
-            />
-          </a>
-          <ul
-            className={menuOpen ? "open" : ""}
-            onClick={() => setMenuOpen(false)}
-          >
-            {NAV.map(([id, label]) => (
-              <li key={id}>
-                <a
-                  href={`#${id}`}
-                  aria-current={active === id ? "page" : undefined}
-                  onClick={() => pick(id)}
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
-            <li className="nav-cta-item">
-              <a className="btn" href="#reservar">
-                Reservar cita
-              </a>
-            </li>
-          </ul>
-        </div>
-        <a className="btn sm" href="#reservar">
-          Reservar cita
-        </a>
-        <button
-          className="nav-toggle"
-          aria-label="Menú"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((o) => !o)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-      </nav>
-
+      <Header />
       <main id="main">
         <ScrollHero />
         <Tagline />
-
         <About />
-
         <TreatmentsCarousel />
-
         <section className="s-base" id="proceso">
           <div className="wrap">
             <p className="eyebrow reveal">Cómo funciona</p>
