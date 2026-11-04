@@ -725,10 +725,10 @@ footer a:hover {
     flex-direction: column;
     justify-content: flex-start;
     gap: 0;
-    padding: 16px 24px 32px;
+    padding: 10px 20px 30px;
     overflow-y: auto;
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 20px;
+    line-height: 28px;
     background: #fff;
     color: var(--taupe);
     border-top: 1px solid rgba(42, 36, 32, 0.1);
