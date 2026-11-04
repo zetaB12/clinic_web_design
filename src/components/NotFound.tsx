@@ -1,8 +1,7 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { TREATMENTS } from "../data/treatments";
 import "./treatment-detail.css";
-
-const BASE = import.meta.env.BASE_URL;
 
 // 404: slug inexistente o ruta desconocida.
 export default function NotFound() {
@@ -23,13 +22,13 @@ export default function NotFound() {
       <ul>
         {TREATMENTS.map((t) => (
           <li key={t.slug}>
-            <a href={`${BASE}tratamientos/${t.slug}`}>{t.name}</a>
+            <Link to={`/tratamientos/${t.slug}`}>{t.name}</Link>
           </li>
         ))}
       </ul>
-      <a className="btn" href={BASE}>
+      <Link className="btn" to="/">
         Volver al inicio
-      </a>
+      </Link>
     </main>
   );
 }

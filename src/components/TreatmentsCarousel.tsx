@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Sparkle } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 import { TREATMENTS } from "../data/treatments";
 import "../assets/treatments.css";
 
@@ -136,13 +137,13 @@ export default function TreatmentsCarousel() {
                   <div className="tx-text">
                     <h3>{t.name}</h3>
                     <p>{t.description}</p>
-                    <a
+                    <Link
                       className="tx-link"
-                      href={`${import.meta.env.BASE_URL}tratamientos/${t.slug}`}
+                      to={`/tratamientos/${t.slug}`}
                       draggable={false}
                     >
                       Ver más <span aria-hidden="true">→</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </li>

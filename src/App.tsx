@@ -6,7 +6,6 @@ import ResultsGallery from "./components/ResultsGallery";
 import About from "./components/About";
 import TreatmentsCarousel from "./components/TreatmentsCarousel";
 import "./index.css";
-import Header from "./components/Header";
 
 const VIDEO = `${import.meta.env.BASE_URL}video/hero.mp4`;
 
@@ -140,6 +139,8 @@ function ScrollHero() {
       target = Math.min(1, Math.max(0, window.scrollY - t.offsetTop) / max);
     };
     const tick = () => {
+      // Al navegar a otra ruta React suelta los refs antes de ejecutar el cleanup.
+      if (!copy.current || !info.current || !bar.current) return;
       current += (target - current) * 0.12;
       if (Math.abs(target - current) < 0.0005) current = target;
       // Un salto a la vez: se pide el siguiente solo cuando terminó el anterior.
@@ -155,13 +156,14 @@ function ScrollHero() {
           }, 300);
         }
       }
-      const fade = Math.max(0, 1 - current / 0.18);
+      // const fade = Math.max(0, 1 - current / 0.18);
+      const fade = Math.max(0, Math.min(1, (0.4 - current) / 0.15));
       const c = copy.current!;
       c.style.opacity = String(fade);
       c.style.transform = `translateY(${(1 - fade) * -32}px)`;
       c.style.pointerEvents = fade < 0.1 ? "none" : "auto";
       // El segundo bloque entra cuando el primero ya se fue.
-      const show = Math.min(1, Math.max(0, (current - 0.27) / 0.15));
+      const show = Math.min(1, Math.max(0, (current - 0.4) / 0.15));
       const i = info.current!;
       i.style.opacity = String(show);
       // Sube desde el borde inferior de la pantalla, frenando al llegar.
@@ -353,7 +355,6 @@ export default function App() {
       <a className="skip" href="#main">
         Saltar al contenido
       </a>
-      <Header />
       <main id="main">
         <ScrollHero />
         <Tagline />

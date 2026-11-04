@@ -1,18 +1,16 @@
 import { useEffect, useRef } from "react";
+import { Link, useParams } from "react-router-dom";
 import {
-  ArrowLeft,
   ArrowRight,
   Check,
   Phone,
   Prohibit,
   WhatsappLogo,
 } from "@phosphor-icons/react";
-import { TREATMENTS, type Section, type Treatment } from "../data/treatments";
+import { TREATMENTS, findTreatment, type Section, type Treatment } from "../data/treatments";
 import { bookingMessage, telHref, whatsappHref } from "../data/contact";
+import NotFound from "./NotFound";
 import "./treatment-detail.css";
-import Header from "./Header";
-
-const BASE = import.meta.env.BASE_URL;
 
 // Tono por defecto de cada tipo de bloque (se puede sobrescribir con `tone` en los datos).
 const DEFAULT_TONE: Record<Section["type"], "bone" | "sand" | "dark"> = {
@@ -284,17 +282,18 @@ function Block({ s, treatment }: { s: Section; treatment: Treatment }) {
 }
 
 // Página individual /tratamientos/:slug. Pinta solo los bloques definidos en los datos.
-export default function TreatmentDetail({
-  treatment: t,
-}: {
-  treatment: Treatment;
-}) {
+export default function TreatmentDetail() {
+  const { slug = "" } = useParams();
+  const t = findTreatment(slug);
+  return t ? <Detail key={t.slug} t={t} /> : <NotFound />;
+}
+
+function Detail({ t }: { t: Treatment }) {
   const root = useRef<HTMLElement>(null);
   const { detail } = t;
   const others = TREATMENTS.filter((x) => x.slug !== t.slug);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     const prev = document.title;
     document.title = `${t.name} | REJUVENA Medicina Estética`;
 
@@ -326,17 +325,6 @@ export default function TreatmentDetail({
 
   return (
     <>
-      <header className="td-bar">
-        <a className="td-brand" href={BASE} aria-label="Ir al inicio">
-          <img src={`${BASE}image/logo-nav.png`} alt="Rejuvena" height={32} />
-        </a>
-        <a className="td-back" href={`${BASE}#tratamientos`}>
-          <ArrowLeft size={16} aria-hidden="true" /> Todos los tratamientos
-        </a>
-        <BookButton treatment={t.name} className="sm" />
-      </header>
-      <Header />
-
       <main className="td" ref={root}>
         <section className="td-hero">
           <div className="td-hero-copy">
@@ -400,11 +388,11 @@ export default function TreatmentDetail({
             <ul>
               {others.map((o) => (
                 <li key={o.slug}>
-                  <a href={`${BASE}tratamientos/${o.slug}`}>
+                  <Link to={`/tratamientos/${o.slug}`}>
                     <o.icon size={28} weight="thin" aria-hidden="true" />
                     <span>{o.name}</span>
                     <ArrowRight size={16} aria-hidden="true" />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

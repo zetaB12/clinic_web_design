@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const NAV = [
   ["main", "Inicio"],
@@ -16,6 +17,8 @@ const NAV_OF: Record<string, string> = {
 };
 
 const Header = () => {
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState<string>("main");
@@ -52,9 +55,15 @@ const Header = () => {
         }),
       { rootMargin: "-40% 0px -55% 0px" },
     );
-    document.querySelectorAll("#main > *").forEach((el) => io.observe(el));
+    if (isHome)
+      document.querySelectorAll("#main > *").forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [isHome]);
+
+  // Fuera del inicio no hay secciones: ninguna entrada queda marcada.
+  useEffect(() => {
+    setActive(isHome ? "main" : "");
+  }, [isHome]);
 
   useEffect(() => {
     let raf = 0;
@@ -76,7 +85,7 @@ const Header = () => {
       if (raf) cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <nav
@@ -84,37 +93,37 @@ const Header = () => {
       aria-label="Principal"
     >
       <div className="nav-left">
-        <a className="brand" href="#main" aria-label="Rejuvena, inicio">
+        <Link className="brand" to="/#main" aria-label="Rejuvena, inicio">
           <img
             src={`${import.meta.env.BASE_URL}image/logo-nav.png`}
             alt="Rejuvena"
           />
-        </a>
+        </Link>
         <ul
           className={menuOpen ? "open" : ""}
           onClick={() => setMenuOpen(false)}
         >
           {NAV.map(([id, label]) => (
             <li key={id}>
-              <a
-                href={`#${id}`}
+              <Link
+                to={`/#${id}`}
                 aria-current={active === id ? "page" : undefined}
                 onClick={() => pick(id)}
               >
                 {label}
-              </a>
+              </Link>
             </li>
           ))}
           <li className="nav-cta-item">
-            <a className="btn" href="#reservar">
+            <Link className="btn" to="/#reservar">
               Reservar cita
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
-      <a className="btn sm" href="#reservar">
+      <Link className="btn sm" to="/#reservar">
         Reservar cita
-      </a>
+      </Link>
       <button
         className="nav-toggle"
         aria-label="Menú"
