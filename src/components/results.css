@@ -1,7 +1,7 @@
 .results { background: #f8f3ec; color: #2a2420; }
 .results-wrap { max-width: 1120px; margin: 0 auto; padding: 96px 16px; }
-.results-eyebrow { font-size: 12px; line-height: 16px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500; color: #8a6b3f; margin-bottom: 12px; }
-.results-title { font-family: 'Bodoni Moda', Georgia, serif; font-weight: 400; font-size: clamp(36px, 5vw, 56px); line-height: 1.05; color: #2a2420; margin-bottom: 16px; }
+.results-eyebrow { color: #8a6b3f; margin-bottom: 16px; }
+.results-title { font-size: clamp(30px, 4.2vw, 52px); line-height: 1.12; color: #2a2420; margin-bottom: 16px; }
 .results-lead { max-width: 52ch; color: #796653; margin-bottom: 40px; }
 
 .results-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 48px; }
@@ -12,7 +12,7 @@
 .chip:focus-visible, .ba-knob:focus-visible { outline: 2px solid #bfa27a; outline-offset: 3px; }
 
 .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 24px; }
-.case h3 { font-family: 'Bodoni Moda', Georgia, serif; font-weight: 400; font-size: 24px; line-height: 28px; margin: 4px 0 8px; color: #2a2420; }
+.case h3 { font-size: 22px; line-height: 28px; margin: 4px 0 8px; color: #2a2420; }
 .case-cat { margin-top: 16px; font-size: 12px; line-height: 16px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; color: #8a6b3f; }
 .case-desc { color: #796653; font-size: 15px; line-height: 24px; }
 .results-empty { padding: 48px 0; color: #796653; max-width: 52ch; }

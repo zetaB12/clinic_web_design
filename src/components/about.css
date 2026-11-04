@@ -17,8 +17,8 @@
 
 /* Texto */
 .ab-copy { position: relative; }
-.ab-eyebrow { font-size: 13px; line-height: 16px; letter-spacing: 0.3em; color: #8a6b3f; margin-bottom: 20px; font-weight: 500; }
-.ab-copy h2 { font-family: 'Marcellus', 'Bodoni Moda', Georgia, serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.04em; font-size: clamp(30px, 3.6vw, 50px); line-height: 1.12; color: var(--espresso); margin-bottom: 28px; max-width: 560px; }
+.ab-eyebrow { color: #8a6b3f; margin-bottom: 20px; }
+.ab-copy h2 { font-size: clamp(30px, 3.6vw, 50px); line-height: 1.12; color: var(--espresso); margin-bottom: 28px; max-width: 560px; }
 .ab-text { max-width: 520px; font-size: 16px; line-height: 28px; color: #5f5348; margin-bottom: 36px; }
 .ab-list { list-style: none; display: grid; gap: 18px; margin-bottom: 44px; }
 .ab-list li { display: flex; align-items: center; gap: 18px; font-size: 16px; font-weight: 500; color: var(--taupe); }

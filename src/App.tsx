@@ -421,6 +421,11 @@ export default function App() {
                 </a>
               </li>
             ))}
+            <li className="nav-cta-item">
+              <a className="btn" href="#reservar">
+                Reservar cita
+              </a>
+            </li>
           </ul>
         </div>
         <a className="btn sm" href="#reservar">

@@ -2,8 +2,8 @@
 .tx { background: var(--bone); color: var(--espresso); scroll-margin-top: var(--nav-h); }
 .tx-wrap { max-width: 1360px; margin: 0 auto; padding: 104px 4.5% 112px; }
 .tx-head { text-align: center; max-width: 680px; margin: 0 auto 56px; }
-.tx-eyebrow { font-size: 13px; line-height: 16px; letter-spacing: 0.3em; font-weight: 400; color: var(--taupe); margin-bottom: 16px; }
-.tx-head h2, .txp h1 { font-family: 'Marcellus', 'Bodoni Moda', Georgia, serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.06em; font-size: clamp(30px, 4.2vw, 56px); line-height: 1.1; color: var(--espresso); margin-bottom: 20px; }
+.tx-eyebrow { color: var(--taupe); margin-bottom: 16px; }
+.tx-head h2, .txp h1 { font-size: clamp(30px, 4.2vw, 56px); line-height: 1.1; color: var(--espresso); margin-bottom: 20px; }
 .tx-rule { display: block; width: 72px; height: 1px; background: var(--champagne); margin: 0 auto 24px; }
 .tx-sub { font-size: 16px; line-height: 26px; color: #6b5d50; }
 
@@ -19,7 +19,7 @@
 .tx-body { display: flex; align-items: flex-start; gap: 28px; flex: 1; padding: 36px 36px 40px; }
 .tx-icon { flex: none; width: 44px; height: 44px; margin-top: 4px; color: #8a7a68; }
 .tx-text { display: flex; flex-direction: column; flex: 1; min-width: 0; height: 100%; }
-.tx-text h3 { font-family: 'Marcellus', Georgia, serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; font-size: 23px; line-height: 30px; white-space: nowrap; color: var(--espresso); margin-bottom: 14px; }
+.tx-text h3 { font-size: 23px; line-height: 30px; white-space: nowrap; color: var(--espresso); margin-bottom: 14px; }
 .tx-text p { font-size: 15px; line-height: 26px; color: #5f5348; margin-bottom: 28px; flex: 1; }
 .tx-link { align-self: flex-start; display: inline-flex; gap: 8px; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em; color: var(--taupe); transition: gap 300ms ease, color 300ms ease; }
 .tx-link:hover { gap: 14px; color: #8a6b3f; }
