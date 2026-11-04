@@ -7,7 +7,7 @@ import About from "./components/About";
 import TreatmentsCarousel from "./components/TreatmentsCarousel";
 import "./index.css";
 
-const VIDEO = "/video/paseo-111-scrub-fast.mp4";
+const VIDEO = `${import.meta.env.BASE_URL}video/paseo-111-scrub-fast.mp4`;
 
 const TRUST = [
   { end: 3, suffix: "+", l: "AÑOS DE EXPERIENCIA" },
@@ -395,7 +395,7 @@ export default function App() {
       >
         <div className="nav-left">
           <a className="brand" href="#main" aria-label="Rejuvena, inicio">
-            <img src="/image/logo-nav.png" alt="Rejuvena" />
+            <img src={`${import.meta.env.BASE_URL}image/logo-nav.png`} alt="Rejuvena" />
           </a>
           <ul
             className={menuOpen ? "open" : ""}

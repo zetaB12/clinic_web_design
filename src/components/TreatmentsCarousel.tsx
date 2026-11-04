@@ -129,7 +129,7 @@ export default function TreatmentsCarousel() {
                     <p>{t.description}</p>
                     <a
                       className="tx-link"
-                      href={`/tratamientos/${t.slug}`}
+                      href={`${import.meta.env.BASE_URL}tratamientos/${t.slug}`}
                       draggable={false}
                     >
                       Ver más <span aria-hidden="true">→</span>

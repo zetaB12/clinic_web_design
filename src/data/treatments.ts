@@ -23,7 +23,7 @@ export const TREATMENTS: Treatment[] = [
     name: "Toxina botulínica",
     description:
       "Suaviza las líneas de expresión de la frente y el contorno de ojos con un resultado natural.",
-    image: "/image/tratamientos/piel.jpg",
+    image: `${import.meta.env.BASE_URL}image/tratamientos/piel.jpg`,
     alt: "Cuidado avanzado de la piel del rostro",
     pos: "80% 40%",
   },
@@ -33,7 +33,7 @@ export const TREATMENTS: Treatment[] = [
     name: "Ácido hialurónico",
     description:
       "Devuelve volumen, definición e hidratación en labios, pómulos y ojeras.",
-    image: "/image/tratamientos/facial.jpg",
+    image: `${import.meta.env.BASE_URL}image/tratamientos/facial.jpg`,
     alt: "Tratamiento de hidratación y volumen facial",
     pos: "85% 70%",
   },
@@ -43,7 +43,7 @@ export const TREATMENTS: Treatment[] = [
     name: "Pink Glow",
     description:
       "Protocolo de luminosidad que unifica el tono y aporta una piel fresca y radiante.",
-    image: "/image/tratamientos/piel.jpg",
+    image: `${import.meta.env.BASE_URL}image/tratamientos/piel.jpg`,
     alt: "Piel luminosa tras un tratamiento de glow",
     pos: "85% 55%",
     zoom: 1.7,
@@ -54,7 +54,7 @@ export const TREATMENTS: Treatment[] = [
     name: "Depilación láser",
     description:
       "Reducción progresiva y duradera del vello con tecnología segura para tu tipo de piel.",
-    image: "/image/tratamientos/cuerpo.jpg",
+    image: `${import.meta.env.BASE_URL}image/tratamientos/cuerpo.jpg`,
     alt: "Tratamiento corporal con tecnología médica",
     pos: "50% 50%",
   },
@@ -64,7 +64,7 @@ export const TREATMENTS: Treatment[] = [
     name: "Limpieza facial",
     description:
       "Limpieza profunda médica que purifica, renueva y prepara la piel para cualquier tratamiento.",
-    image: "/image/tratamientos/facial.jpg",
+    image: `${import.meta.env.BASE_URL}image/tratamientos/facial.jpg`,
     alt: "Limpieza facial profesional",
     pos: "30% 50%",
   },

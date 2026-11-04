@@ -59,7 +59,7 @@ export default function About() {
           </svg>
           <figure className="ab-main">
             <img
-              src="/image/nosotros-1.jpg"
+              src={`${import.meta.env.BASE_URL}image/nosotros-1.jpg`}
               alt="Paciente relajada durante un tratamiento facial"
               width={900}
               height={1100}
@@ -69,7 +69,7 @@ export default function About() {
           </figure>
           <figure className="ab-small">
             <img
-              src="/image/nosotros-2.jpg"
+              src={`${import.meta.env.BASE_URL}image/nosotros-2.jpg`}
               alt="Manos del especialista durante la valoración"
               width={610}
               height={380}
