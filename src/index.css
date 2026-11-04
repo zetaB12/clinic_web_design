@@ -299,6 +299,12 @@ section[id] {
   overflow: hidden;
   background: var(--espresso);
 }
+/* iOS: 100vh incluye la barra de Safari y desplaza el contenido; 100svh no. */
+@supports (-webkit-touch-callout: none) {
+  .hero-stick {
+    height: 100svh;
+  }
+}
 .hero-stick video {
   position: absolute;
   inset: 0;

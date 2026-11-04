@@ -111,11 +111,39 @@ function ScrollHero() {
     let current = 0;
     let raf = 0;
     let seeking = false;
+    let seekTimer = 0;
+    let primed = false;
     v.pause();
     const onSeeked = () => {
       seeking = false;
+      clearTimeout(seekTimer);
     };
     v.addEventListener("seeked", onSeeked);
+
+    // iOS Safari no decodifica ni pinta fotogramas de un <video> que nunca ha
+    // reproducido: un seek sobre un video "virgen" deja el cuadro vacío. Un
+    // play()+pause() silencioso lo activa. Si el navegador lo bloquea (ahorro
+    // de energía, sin gesto), se reintenta en el primer toque o scroll.
+    const prime = () => {
+      if (primed) return;
+      primed = true;
+      const p = v.play();
+      if (p === undefined) return;
+      p.then(() => v.pause()).catch(() => {
+        primed = false;
+      });
+    };
+    const gesture = ["touchstart", "pointerdown", "scroll", "keydown"] as const;
+    const onGesture = () => {
+      prime();
+      if (primed) gesture.forEach((e) => window.removeEventListener(e, onGesture));
+    };
+    v.addEventListener("loadedmetadata", prime);
+    v.addEventListener("loadeddata", prime);
+    gesture.forEach((e) =>
+      window.addEventListener(e, onGesture, { passive: true }),
+    );
+    if (v.readyState >= 1) prime();
 
     // Lee el progreso de scroll una vez por evento; el render va en rAF.
     const measure = () => {
@@ -133,6 +161,11 @@ function ScrollHero() {
         if (Math.abs(v.currentTime - time) > 0.01) {
           seeking = true;
           v.currentTime = time;
+          // Safari a veces no emite "seeked": evita que el scrub se congele.
+          clearTimeout(seekTimer);
+          seekTimer = window.setTimeout(() => {
+            seeking = false;
+          }, 300);
         }
       }
       const fade = Math.max(0, 1 - current / 0.18);
@@ -157,7 +190,11 @@ function ScrollHero() {
     raf = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(raf);
+      clearTimeout(seekTimer);
       v.removeEventListener("seeked", onSeeked);
+      v.removeEventListener("loadedmetadata", prime);
+      v.removeEventListener("loadeddata", prime);
+      gesture.forEach((e) => window.removeEventListener(e, onGesture));
       window.removeEventListener("scroll", measure);
       window.removeEventListener("resize", measure);
     };
@@ -169,6 +206,7 @@ function ScrollHero() {
         <video
           ref={video}
           src={VIDEO}
+          poster={`${import.meta.env.BASE_URL}image/hero-poster.jpg`}
           muted
           playsInline
           preload="auto"
