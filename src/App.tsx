@@ -9,6 +9,7 @@ import Reserve from "./components/Reserve";
 import Footer from "./components/Footer";
 import Tagline from "./components/Tagline";
 import ScrollHero from "./components/ScrollHero";
+import CurtainReveal from "./components/CurtainReveal";
 
 function useReveal() {
   useEffect(() => {
@@ -41,8 +42,10 @@ export default function App() {
         <Tagline />
         <About />
         <TreatmentsCarousel />
-        <Process />
-        <ResultsGallery />
+        <CurtainReveal>
+          <Process />
+          <ResultsGallery />
+        </CurtainReveal>
         <Faq />
         <Reserve />
       </main>

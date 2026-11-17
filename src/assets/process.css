@@ -1,0 +1,30 @@
+/* Proceso: fondo blanco, texto espresso, línea de pasos con rombos (eco del logo). */
+.pr { background: linear-gradient(180deg, #fff 0%, #fff 55%, #f8f3ec 100%); color: var(--espresso); scroll-margin-top: var(--nav-h); }
+.pr-wrap { max-width: 1120px; margin: 0 auto; padding: 88px 4.5% 8px; }
+
+.pr-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+.pr .eyebrow { color: #8a6b3f; margin-bottom: 16px; }
+.pr h2 { font-size: clamp(28px, 3.6vw, 46px); line-height: 1.12; color: var(--espresso); margin-bottom: 24px; }
+.pr-rule { display: block; width: 72px; height: 1px; background: var(--champagne); margin: 0 auto; }
+
+.pr-steps { list-style: none; position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+/* Línea que une los tres pasos */
+.pr-steps::before { content: ""; position: absolute; left: 12%; right: 12%; top: 5px; height: 1px; background: linear-gradient(90deg, transparent, var(--champagne) 15%, var(--champagne) 85%, transparent); }
+
+.pr-step { position: relative; text-align: center; padding: 0 12px; }
+/* Rombo sobre la línea */
+.pr-node { position: relative; z-index: 1; display: block; width: 11px; height: 11px; margin: 0 auto 28px; background: #fff; border: 1.5px solid var(--champagne); transform: rotate(45deg); border-radius: 2px; }
+.pr-n { display: block; font-family: var(--font-display); font-size: 56px; line-height: 1; letter-spacing: 0.04em; color: color-mix(in srgb, var(--champagne) 55%, #fff); margin-bottom: 14px; }
+.pr-step h3 { font-size: 19px; line-height: 26px; color: var(--espresso); margin-bottom: 12px; }
+.pr-step p { max-width: 32ch; margin: 0 auto; font-size: 16px; line-height: 26px; color: #6b5d50; }
+
+@media (max-width: 767px) {
+  .pr-wrap { padding: 64px 20px 0; }
+  .pr-head { margin-bottom: 44px; }
+  .pr-steps { grid-template-columns: 1fr; gap: 36px; padding-left: 28px; }
+  .pr-steps::before { left: 5px; right: auto; top: 6px; bottom: 6px; width: 1px; height: auto; background: linear-gradient(180deg, transparent, var(--champagne) 8%, var(--champagne) 92%, transparent); }
+  .pr-step { text-align: left; padding: 0; }
+  .pr-node { position: absolute; left: -28px; top: 4px; margin: 0; }
+  .pr-n { font-size: 40px; margin-bottom: 8px; }
+  .pr-step p { margin: 0; max-width: none; }
+}

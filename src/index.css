@@ -1,4 +1,27 @@
 /* Paleta de marca (skill, B0). Tema oscuro. Sin #000000 ni #FFFFFF. */
+/* Alice (fuente de marca): autoalojada en /public/fonts. Solo para el wordmark REJUVENA. */
+@font-face {
+  font-family: "Alice";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/alice-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Alice";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/alice-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 :root {
   --bone: #f5f0e9;
   --sand: #e4d7c6;
@@ -16,6 +39,7 @@
   /* Tipografía unificada: títulos en serif Marcellus, cuerpo en Geist. */
   --font-display: "Marcellus", "Bodoni Moda", Georgia, serif;
   --heading-tracking: 0.05em;
+  --font-brand: "Alice", "Marcellus", Georgia, serif;
 
   --nav-h: 80px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -151,15 +175,14 @@ a {
   border-right: 1px solid color-mix(in srgb, var(--nav-fg) 25%, transparent);
   transition: border-color 300ms ease-in-out;
 }
-.nav .brand img {
+.nav .brand-word {
   display: block;
-  height: 40px;
-  width: auto;
-  filter: brightness(0) invert(0.95);
-  transition: filter 300ms ease-in-out;
-}
-.nav.is-solid .brand img {
-  filter: none;
+  font-family: var(--font-brand);
+  font-size: 28px;
+  line-height: 40px;
+  text-transform: uppercase;
+  color: var(--nav-fg);
+  transition: color 300ms ease-in-out;
 }
 .nav ul {
   position: relative;
@@ -658,27 +681,6 @@ input[aria-invalid="true"] {
   color: var(--muted);
 }
 
-footer {
-  background: var(--espresso);
-}
-footer .wrap {
-  padding: 48px 16px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 20px;
-}
-footer nav {
-  display: flex;
-  gap: 24px;
-}
-footer a:hover {
-  color: var(--accent);
-}
-
 .reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -702,8 +704,9 @@ footer a:hover {
     margin-right: 0;
     border-right: 0;
   }
-  .nav .brand img {
-    height: 30px;
+  .nav .brand-word {
+    font-size: 22px;
+    line-height: 30px;
   }
   .nav-left {
     flex: 1;

@@ -94,10 +94,9 @@ const Header = () => {
     >
       <div className="nav-left">
         <Link className="brand" to="/#main" aria-label="Rejuvena, inicio">
-          <img
-            src={`${import.meta.env.BASE_URL}image/logo-nav.png`}
-            alt="Rejuvena"
-          />
+          <span className="brand-word" aria-hidden="true">
+            Rejuvena
+          </span>
         </Link>
         <ul
           className={menuOpen ? "open" : ""}

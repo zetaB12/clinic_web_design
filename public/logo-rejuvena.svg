@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="165 108 640 640" fill="none">
+  <title>Aesthetic Rejuvena</title>
+  <g stroke="#6b4a1c" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M487 206 L533 252 L487 298 L441 252 Z"/>
+    <path d="M380 318 C372 340 385 400 385 470 C385 560 430 620 487 632 C545 620 590 560 590 470 C590 400 602 340 592 316 C555 312 515 345 487 372 C455 345 420 312 380 318 Z"/>
+    <path d="M487 372 L448 416"/>
+    <path d="M350 433 C300 424 250 424 208 440 C216 480 290 565 345 612 C385 645 445 650 487 632"/>
+    <path d="M624 433 C674 424 724 424 766 440 C758 480 684 565 629 612 C589 645 529 650 487 632"/>
+  </g>
+</svg>

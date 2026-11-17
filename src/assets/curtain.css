@@ -1,0 +1,38 @@
+/* Curtain reveal: imagen fija (capa 1) + sección que sube y la cubre (capa 2).
+   Importante: ningún ancestro de .cr-img debe tener overflow, o el sticky se rompe. */
+.cr { position: relative; }
+.cr-img {
+  position: sticky; top: 0; z-index: 0;
+  height: 100vh; height: 100svh;
+  overflow: hidden;
+  background: var(--espresso);
+}
+.cr-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; display: block; }
+.cr-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(42, 36, 32, 0.7), rgba(42, 36, 32, 0) 55%); }
+.cr-copy { position: absolute; left: 4.5%; right: 4.5%; bottom: 8%; color: var(--bone); max-width: 560px; }
+.cr-eyebrow { color: var(--champagne); font-size: 13px; line-height: 16px; font-weight: 500; letter-spacing: 0.3em; margin-bottom: 14px; }
+.cr-line { font-family: var(--font-display); font-size: clamp(28px, 4vw, 52px); line-height: 1.1; letter-spacing: var(--heading-tracking); text-transform: uppercase; }
+
+/* Pausa: tramo de scroll con la imagen quieta antes de que suba el telón. */
+.cr-hold { height: 50vh; height: 50svh; }
+
+/* Telón: fondo sólido, sobre la imagen. Contiene Proceso y Resultados, así que es siempre más alto que una pantalla. */
+.cr-cover {
+  position: relative; z-index: 1;
+  min-height: 100vh; min-height: 100svh;
+  background: #fff;
+  color: var(--espresso);
+  border-top: 1px solid color-mix(in srgb, var(--champagne) 55%, transparent);
+  box-shadow: 0 -20px 50px -14px rgba(42, 36, 32, 0.28);
+}
+
+@media (max-width: 767px) {
+  .cr-img img { object-position: 68% 40%; }
+  .cr-copy { bottom: 10%; }
+}
+/* Sin movimiento: la imagen deja de ser fija y el telón no se superpone. */
+@media (prefers-reduced-motion: reduce) {
+  .cr-img { position: relative; }
+  .cr-hold { display: none; }
+  .cr-cover { box-shadow: none; }
+}
