@@ -7,10 +7,15 @@ import {
   Prohibit,
   WhatsappLogo,
 } from "@phosphor-icons/react";
-import { TREATMENTS, findTreatment, type Section, type Treatment } from "../data/treatments";
+import {
+  TREATMENTS,
+  findTreatment,
+  type Section,
+  type Treatment,
+} from "../data/treatments";
 import { bookingMessage, telHref, whatsappHref } from "../data/contact";
 import NotFound from "./NotFound";
-import "./treatment-detail.css";
+import "../assets/treatment-detail.css";
 
 // Tono por defecto de cada tipo de bloque (se puede sobrescribir con `tone` en los datos).
 const DEFAULT_TONE: Record<Section["type"], "bone" | "sand" | "dark"> = {

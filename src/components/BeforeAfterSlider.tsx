@@ -1,5 +1,5 @@
 import { useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
-import { CaretLeft, CaretRight } from "@phosphor-icons/react";
+import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
 
 interface Props {
   before: string;
@@ -30,7 +30,10 @@ export default function BeforeAfterSlider({
   const set = (value: number) => {
     pos.current = clamp(value);
     box.current?.style.setProperty("--pos", `${pos.current}%`);
-    handle.current?.setAttribute("aria-valuenow", String(Math.round(pos.current)));
+    handle.current?.setAttribute(
+      "aria-valuenow",
+      String(Math.round(pos.current)),
+    );
   };
 
   const fromPointer = (e: PointerEvent) => {
@@ -109,8 +112,8 @@ export default function BeforeAfterSlider({
         aria-valuetext="Desliza para comparar antes y después"
         onKeyDown={onKey}
       >
-        <CaretLeft size={14} weight="bold" aria-hidden="true" />
-        <CaretRight size={14} weight="bold" aria-hidden="true" />
+        <CaretLeftIcon size={14} weight="bold" aria-hidden="true" />
+        <CaretRightIcon size={14} weight="bold" aria-hidden="true" />
       </div>
     </div>
   );

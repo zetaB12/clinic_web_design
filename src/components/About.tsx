@@ -1,15 +1,9 @@
 import { useEffect, useRef } from "react";
-import { ArrowRight, Check } from "@phosphor-icons/react";
+import { ArrowRightIcon, CheckIcon } from "@phosphor-icons/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../assets/about.css";
-
-const POINTS = [
-  "Valoración médica de 40 minutos",
-  "Plan por escrito el mismo día",
-  "Dosis conservadoras y resultados naturales",
-  "El mismo equipo de principio a fin",
-];
+import { POINTS } from "../data/const";
 
 export default function About() {
   const root = useRef<HTMLElement>(null);
@@ -137,7 +131,7 @@ export default function About() {
                 style={{ "--d": `${320 + i * 110}ms` } as React.CSSProperties}
               >
                 <span className="ab-check">
-                  <Check size={16} weight="bold" aria-hidden="true" />
+                  <CheckIcon size={16} weight="bold" aria-hidden="true" />
                 </span>
                 {p}
               </li>
@@ -148,7 +142,8 @@ export default function About() {
             href="#reservar"
             style={{ "--d": "800ms" } as React.CSSProperties}
           >
-            Reserva tu valoración <ArrowRight size={18} aria-hidden="true" />
+            Reserva tu valoración{" "}
+            <ArrowRightIcon size={18} aria-hidden="true" />
           </a>
           <svg className="ab-leaf" viewBox="0 0 80 140" aria-hidden="true">
             <path d="M40 138 V30 M40 100 C14 96 8 70 10 50 C32 52 42 72 40 100 M40 70 C62 64 70 40 66 16 C46 24 36 44 40 70" />

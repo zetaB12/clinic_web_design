@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Sparkle } from "@phosphor-icons/react";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  SparkleIcon,
+} from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import { TREATMENTS } from "../data/treatments";
 import "../assets/treatments.css";
@@ -91,7 +95,7 @@ export default function TreatmentsCarousel() {
             disabled={edge.start}
             onClick={() => go(-1)}
           >
-            <ArrowLeft size={20} />
+            <ArrowLeftIcon size={20} />
           </button>
           <ul
             className={`tx-track${dragging ? " dragging" : ""}`}
@@ -123,7 +127,7 @@ export default function TreatmentsCarousel() {
                     />
                   ) : (
                     <div className="tx-ph" aria-hidden="true">
-                      <Sparkle size={40} weight="thin" />
+                      <SparkleIcon size={40} weight="thin" />
                     </div>
                   )}
                 </div>
@@ -155,7 +159,7 @@ export default function TreatmentsCarousel() {
             disabled={edge.end}
             onClick={() => go(1)}
           >
-            <ArrowRight size={20} />
+            <ArrowRightIcon size={20} />
           </button>
         </div>
       </div>
