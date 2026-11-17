@@ -17,7 +17,7 @@ export interface ResultCase {
   treatment: TreatmentId;
   title: string;
   description: string;
-  /** Rutas dentro de /public, por ejemplo "/image/casos/labios-01-antes.jpg". */
+  /** Rutas dentro de /public, por ejemplo "/image/casos/labios-01-antes.webp". */
   before: string;
   after: string;
   /** Texto alternativo opcional para las fotografías. */
@@ -34,8 +34,8 @@ export interface ResultCase {
  *   treatment: "labios",
  *   title: "Volumen natural en labios",
  *   description: "Una sesión, 1 ml de ácido hialurónico.",
- *   before: "/image/casos/labios-01-antes.jpg",
- *   after: "/image/casos/labios-01-despues.jpg",
+ *   before: "/image/casos/labios-01-antes.webp",
+ *   after: "/image/casos/labios-01-despues.webp",
  * },
  */
 
@@ -46,8 +46,8 @@ export const CASES: ResultCase[] = [
     treatment: "labios",
     title: "Volumen natural en labios",
     description: "Una sesión, 1 ml de ácido hialurónico.",
-    before: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-antes.jpg`,
-    after: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-despues.jpg`,
+    before: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-antes.webp`,
+    after: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-despues.webp`,
     alt: "Comparación antes y después de relleno de labios",
   },
   {
@@ -55,8 +55,8 @@ export const CASES: ResultCase[] = [
     treatment: "labios",
     title: "Volumen natural en labios",
     description: "Una sesión, 1 ml de ácido hialurónico.",
-    before: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-antes.jpg`,
-    after: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-despues.jpg`,
+    before: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-antes.webp`,
+    after: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-despues.webp`,
     alt: "Comparación antes y después de relleno de labios",
   },
   {
@@ -64,8 +64,8 @@ export const CASES: ResultCase[] = [
     treatment: "labios",
     title: "Volumen natural en labios",
     description: "Una sesión, 1 ml de ácido hialurónico.",
-    before: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-antes.jpg`,
-    after: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-despues.jpg`,
+    before: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-antes.webp`,
+    after: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-despues.webp`,
     alt: "Comparación antes y después de relleno de labios",
   },
   {
@@ -73,8 +73,8 @@ export const CASES: ResultCase[] = [
     treatment: "labios",
     title: "Volumen natural en labios",
     description: "Una sesión, 1 ml de ácido hialurónico.",
-    before: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-antes.jpg`,
-    after: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-despues.jpg`,
+    before: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-antes.webp`,
+    after: `${import.meta.env.BASE_URL}image/casos/labios/labios-01-despues.webp`,
     alt: "Comparación antes y después de relleno de labios",
   },
   {
@@ -82,8 +82,8 @@ export const CASES: ResultCase[] = [
     treatment: "toxina",
     title: "Volumen natural en labios",
     description: "Una sesión, 1 ml de ácido hialurónico.",
-    before: `${import.meta.env.BASE_URL}image/casos/toxina/botox-antes.png`,
-    after: `${import.meta.env.BASE_URL}image/casos/toxina/botox-despues.png`,
+    before: `${import.meta.env.BASE_URL}image/casos/toxina/botox-antes.webp`,
+    after: `${import.meta.env.BASE_URL}image/casos/toxina/botox-despues.webp`,
     alt: "Comparación antes y después de relleno de labios",
   },
   {
@@ -91,8 +91,8 @@ export const CASES: ResultCase[] = [
     treatment: "toxina",
     title: "Volumen natural en labios",
     description: "Una sesión, 1 ml de ácido hialurónico.",
-    before: `${import.meta.env.BASE_URL}image/casos/toxina/botox-antes1.png`,
-    after: `${import.meta.env.BASE_URL}image/casos/toxina/botox-despues1.png`,
+    before: `${import.meta.env.BASE_URL}image/casos/toxina/botox-antes1.webp`,
+    after: `${import.meta.env.BASE_URL}image/casos/toxina/botox-despues1.webp`,
     alt: "Comparación antes y después de relleno de labios",
   },
 ];

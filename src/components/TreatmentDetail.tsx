@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link, useParams } from "react-router-dom";
 import {
   ArrowRight,
   Check,
-  Phone,
   Prohibit,
   WhatsappLogo,
 } from "@phosphor-icons/react";
@@ -13,7 +14,7 @@ import {
   type Section,
   type Treatment,
 } from "../data/treatments";
-import { bookingMessage, telHref, whatsappHref } from "../data/contact";
+import { bookingMessage, whatsappHref } from "../data/contact";
 import NotFound from "./NotFound";
 import "../assets/treatment-detail.css";
 import { useSeo } from "../hooks/useSeo";
@@ -74,6 +75,7 @@ function Block({ s, treatment }: { s: Section; treatment: Treatment }) {
       return (
         <>
           <header className="td-head">
+            <p className="td-eyebrow">Zonas</p>
             <h2>{s.title}</h2>
             {s.lead && <p>{s.lead}</p>}
           </header>
@@ -93,6 +95,7 @@ function Block({ s, treatment }: { s: Section; treatment: Treatment }) {
       return (
         <>
           <header className="td-head">
+            <p className="td-eyebrow">Beneficios</p>
             <h2>{s.title}</h2>
           </header>
           <ul
@@ -114,6 +117,7 @@ function Block({ s, treatment }: { s: Section; treatment: Treatment }) {
       return (
         <>
           <header className="td-head">
+            <p className="td-eyebrow">Indicaciones</p>
             <h2>{s.title}</h2>
           </header>
           <div className={`td-two${s.notFor ? "" : " single"}`}>
@@ -174,6 +178,7 @@ function Block({ s, treatment }: { s: Section; treatment: Treatment }) {
       return (
         <>
           <header className="td-head">
+            <p className="td-eyebrow">Tu plan</p>
             <h2>{s.title}</h2>
             {s.lead && <p>{s.lead}</p>}
           </header>
@@ -196,6 +201,7 @@ function Block({ s, treatment }: { s: Section; treatment: Treatment }) {
       return (
         <>
           <header className="td-head">
+            <p className="td-eyebrow">Resultados</p>
             <h2>{s.title}</h2>
             {s.lead && <p>{s.lead}</p>}
           </header>
@@ -234,6 +240,7 @@ function Block({ s, treatment }: { s: Section; treatment: Treatment }) {
       return (
         <>
           <header className="td-head">
+            <p className="td-eyebrow">Después del tratamiento</p>
             <h2>{s.title}</h2>
           </header>
           <div className={`td-two${s.donts ? "" : " single"}`}>
@@ -270,7 +277,7 @@ function Block({ s, treatment }: { s: Section; treatment: Treatment }) {
       return (
         <div className="td-split">
           <header className="td-head left">
-            <p className="td-eyebrow">FAQ</p>
+            <p className="td-eyebrow">Preguntas frecuentes</p>
             <h2>{s.title}</h2>
             <p>¿Te queda alguna duda? Te la resolvemos en la valoración.</p>
             <BookButton treatment={treatment.name} />
@@ -325,28 +332,122 @@ function Detail({ t }: { t: Treatment }) {
   });
 
   useEffect(() => {
-    // Aparición suave de cada bloque al entrar en pantalla.
-    const els = root.current!.querySelectorAll<HTMLElement>(".td-sec");
-    if (
-      !("IntersectionObserver" in window) ||
-      matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      els.forEach((e) => e.classList.add("in"));
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("in");
-            io.unobserve(e.target);
-          }
-        }),
-      { threshold: 0.12 },
-    );
-    els.forEach((e) => io.observe(e));
+    const el = root.current!;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    let ctx: gsap.Context | undefined;
+    // Un frame después: Layout ya llevó el scroll al inicio y los triggers se miden bien.
+    const raf = requestAnimationFrame(() => {
+      ctx = gsap.context(() => {
+        // Hero: la foto se desplaza más lento que el scroll (parallax).
+        gsap.fromTo(
+          ".td-hero-img img",
+          { yPercent: -6, scale: 1.14 },
+          {
+            yPercent: 6,
+            scale: 1.14,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".td-hero",
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.6,
+            },
+          },
+        );
+
+        // Cada bloque entra en cascada: etiqueta, título y contenido.
+        const parts = [
+          ".td-split > :first-child > *",
+          ".td-head > *",
+          ".td-prose > *",
+          ".td-zones li",
+          ".td-cards li",
+          ".td-col",
+          ".td-steps li",
+          ".td-plan > div",
+          ".td-results figure",
+          ".td-faq details",
+          ".td-note",
+        ].join(",");
+        gsap.utils.toArray<HTMLElement>(".td-sec").forEach((sec) => {
+          const targets = Array.from(
+            new Set(gsap.utils.selector(sec)(parts)),
+          ) as Element[];
+          gsap.from(targets, {
+            y: 40,
+            autoAlpha: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            stagger: 0.09,
+            scrollTrigger: { trigger: sec, start: "top 78%", once: true },
+          });
+        });
+
+        // Procedimiento: la línea de tiempo se dibuja al bajar y los pasos aparecen con ella.
+        gsap.fromTo(
+          ".td-steps",
+          { "--p": 0 },
+          {
+            "--p": 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".td-steps",
+              start: "top 70%",
+              end: "bottom 65%",
+              scrub: true,
+            },
+          },
+        );
+        gsap.from(".td-dot", {
+          scale: 0.4,
+          duration: 0.6,
+          ease: "back.out(2)",
+          stagger: 0.18,
+          scrollTrigger: { trigger: ".td-steps", start: "top 75%", once: true },
+        });
+
+        // Antes / después: cada foto se destapa de izquierda a derecha.
+        gsap.from(".td-pair > div", {
+          clipPath: "inset(0 100% 0 0)",
+          duration: 1.2,
+          ease: "power3.inOut",
+          stagger: 0.25,
+          scrollTrigger: { trigger: ".td-results", start: "top 80%", once: true },
+        });
+
+        // Cierre y otros tratamientos.
+        gsap.from(".td-final .td-wrap > *", {
+          y: 32,
+          autoAlpha: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.12,
+          scrollTrigger: { trigger: ".td-final", start: "top 75%", once: true },
+        });
+        gsap.from(".td-more li", {
+          y: 24,
+          autoAlpha: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: { trigger: ".td-more", start: "top 85%", once: true },
+        });
+
+        // Las fotos de resultados cambian la altura al cargar: se recalculan los triggers.
+        el.querySelectorAll<HTMLImageElement>(".td-pair img").forEach((img) => {
+          if (!img.complete)
+            img.addEventListener("load", () => ScrollTrigger.refresh(), {
+              once: true,
+            });
+        });
+      }, el);
+    });
+
     return () => {
-      io.disconnect();
+      cancelAnimationFrame(raf);
+      ctx?.revert();
     };
   }, [t]);
 
@@ -360,9 +461,9 @@ function Detail({ t }: { t: Treatment }) {
             <p className="td-lead">{detail.lead}</p>
             <div className="td-cta">
               <BookButton treatment={t.name} />
-              <a className="td-link" href={telHref}>
-                <Phone size={18} aria-hidden="true" /> Prefiero llamar
-              </a>
+              <span className="td-assure">
+                Te respondemos por WhatsApp en menos de 24 horas.
+              </span>
             </div>
           </div>
           <figure className="td-hero-img">

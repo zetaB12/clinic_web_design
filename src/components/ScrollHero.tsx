@@ -117,7 +117,7 @@ const ScrollHero = () => {
         <video
           ref={video}
           src={VIDEO}
-          poster={`${import.meta.env.BASE_URL}image/hero-poster.jpg`}
+          poster={`${import.meta.env.BASE_URL}image/hero-poster.webp`}
           muted
           playsInline
           preload="auto"

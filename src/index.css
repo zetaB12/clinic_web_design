@@ -292,10 +292,77 @@ section[id] {
   line-height: 20px;
   padding: 10px 20px;
 }
-.nav .btn.sm {
-  background: var(--champagne);
-  border-color: var(--champagne);
+/* Reservar cita (menú). Sobre el hero: dorado luminoso. Con el menú blanco: espresso con filo champagne. */
+.nav .btn.sm,
+.nav ul li.nav-cta-item .btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 11px 26px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ecd7b2 0%, #cfb184 48%, #b0905f 100%);
   color: var(--espresso);
+  letter-spacing: 0.02em;
+  transition:
+    color 350ms ease-in-out,
+    transform 300ms var(--ease);
+}
+/* Capa espresso que aparece cuando el menú se vuelve blanco. */
+.nav .btn.sm::before,
+.nav ul li.nav-cta-item .btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #493d34 0%, #2a2420 100%);
+  opacity: 0;
+  transition: opacity 350ms ease-in-out;
+}
+/* Destello que cruza el botón al pasar el cursor. */
+.nav .btn.sm::after,
+.nav ul li.nav-cta-item .btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 40%;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 700ms var(--ease);
+  pointer-events: none;
+}
+.nav .btn.sm:hover,
+.nav ul li.nav-cta-item .btn:hover {
+  opacity: 1;
+}
+.nav .btn.sm:hover::after,
+.nav ul li.nav-cta-item .btn:hover::after {
+  left: 120%;
+}
+.nav.is-solid .btn.sm,
+.nav.is-solid ul li.nav-cta-item .btn {
+  color: #f3e4c8;
+}
+.nav.is-solid .btn.sm::before,
+.nav.is-solid ul li.nav-cta-item .btn::before {
+  opacity: 1;
+}
+.nav.is-solid .btn.sm:hover,
+.nav.is-solid ul li.nav-cta-item .btn:hover {
+  color: #fff;
+}
+.nav .btn.sm:focus-visible,
+.nav ul li.nav-cta-item .btn:focus-visible {
+  outline: 2px solid var(--champagne);
+  outline-offset: 3px;
 }
 .btn.outline {
   background: rgba(245, 240, 233, 0.08);
@@ -630,7 +697,7 @@ input[aria-invalid="true"] {
   }
   .nav .btn.sm {
     margin-left: auto;
-    padding: 8px 14px;
+    padding: 9px 18px;
   }
   .nav-toggle {
     display: block;
@@ -789,6 +856,10 @@ input[aria-invalid="true"] {
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .nav .btn.sm::after,
+  .nav ul li.nav-cta-item .btn::after {
+    display: none;
+  }
   html {
     scroll-behavior: auto;
   }

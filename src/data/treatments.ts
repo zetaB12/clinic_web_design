@@ -113,8 +113,8 @@ export const TREATMENTS: Treatment[] = [
           lead: "Casos de pacientes tratadas en la clínica, con su autorización.",
           tone: "sand",
           pairs: [
-            { before: img("casos/toxina/botox-antes1.png"), after: img("casos/toxina/botox-despues1.png"), alt: "Zona de la frente antes y después de toxina botulínica", caption: "Frente · 14 días después" },
-            { before: img("casos/toxina/botox-antes.png"), after: img("casos/toxina/botox-despues.png"), alt: "Perfil del rostro antes y después de toxina botulínica", caption: "Entrecejo · 14 días después" },
+            { before: img("casos/toxina/botox-antes1.webp"), after: img("casos/toxina/botox-despues1.webp"), alt: "Zona de la frente antes y después de toxina botulínica", caption: "Frente · 14 días después" },
+            { before: img("casos/toxina/botox-antes.webp"), after: img("casos/toxina/botox-despues.webp"), alt: "Perfil del rostro antes y después de toxina botulínica", caption: "Entrecejo · 14 días después" },
           ],
           note: "Los resultados varían según cada persona y no constituyen una garantía.",
         },
@@ -210,7 +210,7 @@ export const TREATMENTS: Treatment[] = [
           lead: "Labios antes y después de la sesión: más hidratación y volumen discreto.",
           tone: "bone",
           pairs: [
-            { before: img("casos/labios/labios-01-antes.jpg"), after: img("casos/labios/labios-01-despues.jpg"), alt: "Labios antes y después de ácido hialurónico", caption: "Labios · resultado inmediato" },
+            { before: img("casos/labios/labios-01-antes.webp"), after: img("casos/labios/labios-01-despues.webp"), alt: "Labios antes y después de ácido hialurónico", caption: "Labios · resultado inmediato" },
           ],
           note: "Imagen real con autorización de la paciente. Los resultados varían entre personas.",
         },
@@ -496,7 +496,7 @@ export const TREATMENTS: Treatment[] = [
     name: "Limpieza facial",
     description:
       "Limpieza profunda médica que purifica, renueva y prepara la piel para cualquier tratamiento.",
-    image: img("tratamientos/facial.jpg"),
+    image: img("tratamientos/facial.webp"),
     alt: "Limpieza facial profesional",
     pos: "30% 50%",
     detail: {
