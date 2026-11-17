@@ -5,12 +5,6 @@ body:has(.td), body:has(.td-404) { background: var(--bone); }
 .td-wrap { max-width: 1200px; margin: 0 auto; padding: 0 4.5%; }
 
 /* Barra superior (oscura, igual que el navbar sobre el Hero) */
-.td-bar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 24px; height: 72px; padding: 0 4.5%; background: var(--espresso); color: var(--bone); }
-.td-brand img { display: block; height: 32px; width: auto; filter: brightness(0) invert(0.95); }
-.td-back { display: inline-flex; align-items: center; gap: 8px; margin-right: auto; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sand); transition: color 300ms ease; }
-.td-back:hover { color: var(--champagne); }
-.td-bar .td-btn { margin-left: auto; }
-.td-back + .td-btn { margin-left: 0; }
 
 .td-btn { padding: 14px 26px; border-radius: 999px; font-size: 15px; background: var(--champagne); border-color: var(--champagne); color: var(--espresso); }
 .td-btn.sm { padding: 10px 20px; font-size: 14px; }
@@ -150,9 +144,6 @@ body:has(.td), body:has(.td-404) { background: var(--bone); }
   .td-two { grid-template-columns: 1fr; }
   .td-plan > div { grid-template-columns: 1fr; gap: 6px; }
   .td-pair img { height: 260px; }
-  .td-bar { padding: 0 16px; gap: 12px; }
-  .td-back { font-size: 0; gap: 0; }
-  .td-back svg { width: 20px; height: 20px; }
   .td-final, .td-more { padding-top: 72px; padding-bottom: 72px; }
 }
 @media (prefers-reduced-motion: reduce) {

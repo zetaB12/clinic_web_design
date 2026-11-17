@@ -16,6 +16,8 @@ import {
 import { bookingMessage, telHref, whatsappHref } from "../data/contact";
 import NotFound from "./NotFound";
 import "../assets/treatment-detail.css";
+import { useSeo } from "../hooks/useSeo";
+import { SITE_NAME, SITE_URL } from "../data/site";
 
 // Tono por defecto de cada tipo de bloque (se puede sobrescribir con `tone` en los datos).
 const DEFAULT_TONE: Record<Section["type"], "bone" | "sand" | "dark"> = {
@@ -298,10 +300,31 @@ function Detail({ t }: { t: Treatment }) {
   const { detail } = t;
   const others = TREATMENTS.filter((x) => x.slug !== t.slug);
 
-  useEffect(() => {
-    const prev = document.title;
-    document.title = `${t.name} | REJUVENA Medicina Estética`;
+  useSeo({
+    title: `${t.name} | ${SITE_NAME}`,
+    description: t.description,
+    path: `/tratamientos/${t.slug}`,
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: t.name,
+        description: t.description,
+        url: `${SITE_URL}/tratamientos/${t.slug}`,
+        provider: { "@type": "MedicalBusiness", name: SITE_NAME, url: SITE_URL },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Inicio", item: `${SITE_URL}/` },
+          { "@type": "ListItem", position: 2, name: t.name, item: `${SITE_URL}/tratamientos/${t.slug}` },
+        ],
+      },
+    ],
+  });
 
+  useEffect(() => {
     // Aparición suave de cada bloque al entrar en pantalla.
     const els = root.current!.querySelectorAll<HTMLElement>(".td-sec");
     if (
@@ -309,7 +332,7 @@ function Detail({ t }: { t: Treatment }) {
       matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
       els.forEach((e) => e.classList.add("in"));
-      return () => void (document.title = prev);
+      return;
     }
     const io = new IntersectionObserver(
       (entries) =>
@@ -324,7 +347,6 @@ function Detail({ t }: { t: Treatment }) {
     els.forEach((e) => io.observe(e));
     return () => {
       io.disconnect();
-      document.title = prev;
     };
   }, [t]);
 

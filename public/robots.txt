@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zetab12.github.io/clinic_web_design/sitemap.xml

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigationType } from "react-router-dom";
 import Header from "./Header";
+import FloatingCta from "./FloatingCta";
 
 // Layout persistente: el Header vive aquí, fuera de <Outlet />, por lo que no se
 // desmonta ni reinicia al cambiar de ruta. Sólo cambia el contenido de la página.
@@ -23,6 +24,7 @@ export default function Layout() {
     <>
       <Header />
       <Outlet />
+      <FloatingCta />
     </>
   );
 }

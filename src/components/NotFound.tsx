@@ -1,15 +1,16 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { TREATMENTS } from "../data/treatments";
+import { useSeo } from "../hooks/useSeo";
 import "../assets/treatment-detail.css";
 
 // 404: slug inexistente o ruta desconocida.
 export default function NotFound() {
-  useEffect(() => {
-    const prev = document.title;
-    document.title = "Página no encontrada | REJUVENA";
-    return () => void (document.title = prev);
-  }, []);
+  useSeo({
+    title: "Página no encontrada | REJUVENA",
+    description: "La página que buscas no existe. Explora nuestros tratamientos.",
+    path: "/404",
+    noindex: true,
+  });
 
   return (
     <main className="td-404">

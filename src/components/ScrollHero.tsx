@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { CalendarCheckIcon, PhoneIcon } from "@phosphor-icons/react";
+import { telHref } from "../data/contact";
 
 const VIDEO = `${import.meta.env.BASE_URL}video/hero.mp4`;
 
@@ -151,7 +152,7 @@ const ScrollHero = () => {
               <CalendarCheckIcon size={20} aria-hidden="true" />
               Reservar cita
             </a>
-            <a className="btn outline" href="tel:+51900000000">
+            <a className="btn outline" href={telHref}>
               <PhoneIcon size={20} aria-hidden="true" />
               Llamar ahora
             </a>

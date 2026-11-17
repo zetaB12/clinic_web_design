@@ -24,6 +24,12 @@ const Process = () => {
             </li>
           ))}
         </ol>
+        <div className="pr-cta reveal">
+          <a className="pr-btn" href="#reservar">
+            Reserva tu valoración
+          </a>
+          <span>Cancelación gratuita hasta 24 horas antes.</span>
+        </div>
       </div>
     </section>
   );

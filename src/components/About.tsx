@@ -80,7 +80,7 @@ export default function About() {
           </svg>
           <figure className="ab-main">
             <img
-              src={`${import.meta.env.BASE_URL}image/nosotros-1.png`}
+              src={`${import.meta.env.BASE_URL}image/nosotros-1.webp`}
               alt="Paciente relajada durante un tratamiento facial"
               width={900}
               height={1100}
@@ -90,7 +90,7 @@ export default function About() {
           </figure>
           <figure className="ab-small">
             <img
-              src={`${import.meta.env.BASE_URL}image/nosotros-2.png`}
+              src={`${import.meta.env.BASE_URL}image/nosotros-2.webp`}
               alt="Manos del especialista durante la valoración"
               width={610}
               height={380}

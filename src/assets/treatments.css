@@ -1,9 +1,9 @@
 /* Tratamientos destacados: fondo Bone, texto Espresso/Taupe, acentos Champagne. */
-.tx { background: var(--bone); color: var(--espresso); scroll-margin-top: var(--nav-h); }
+.tx { background: #ece2d3; color: var(--espresso); scroll-margin-top: var(--nav-h); }
 .tx-wrap { max-width: 1360px; margin: 0 auto; padding: 104px 4.5% 112px; }
 .tx-head { text-align: center; max-width: 680px; margin: 0 auto 56px; }
 .tx-eyebrow { color: var(--taupe); margin-bottom: 16px; }
-.tx-head h2, .txp h1 { font-size: clamp(30px, 4.2vw, 56px); line-height: 1.1; color: var(--espresso); margin-bottom: 20px; }
+.tx-head h2 { font-size: clamp(30px, 4.2vw, 56px); line-height: 1.1; color: var(--espresso); margin-bottom: 20px; }
 .tx-rule { display: block; width: 72px; height: 1px; background: var(--champagne); margin: 0 auto 24px; }
 .tx-sub { font-size: 16px; line-height: 26px; color: #6b5d50; }
 
@@ -11,7 +11,7 @@
 .tx-track { --gap: 20px; --per: 3; display: flex; gap: var(--gap); list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; cursor: grab; overscroll-behavior-x: contain; }
 .tx-track::-webkit-scrollbar { display: none; }
 .tx-track.dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; user-select: none; }
-.tx-card { flex: 0 0 calc((100% - (var(--per) - 1) * var(--gap)) / var(--per)); scroll-snap-align: start; display: flex; flex-direction: column; background: #ebe3da; border-radius: 0; overflow: hidden; }
+.tx-card { flex: 0 0 calc((100% - (var(--per) - 1) * var(--gap)) / var(--per)); scroll-snap-align: start; display: flex; flex-direction: column; background: #fbf8f3; border-radius: 0; overflow: hidden; }
 .tx-photo { aspect-ratio: 16 / 9.3; background: var(--sand); overflow: hidden; }
 .tx-photo img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(var(--z, 1)); transform-origin: var(--o, 50% 50%); transition: transform 700ms var(--ease); }
 .tx-card:hover .tx-photo img { transform: scale(calc(var(--z, 1) * 1.04)); }
@@ -45,8 +45,3 @@
 @media (prefers-reduced-motion: reduce) { .tx-track { scroll-behavior: auto; } }
 
 /* Página individual */
-.txp { min-height: 100vh; background: var(--bone); color: var(--espresso); padding: 120px 4.5% 80px; max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
-.txp .tx-link { margin-bottom: 32px; }
-.txp .tx-eyebrow { margin-bottom: 8px; }
-.txp img { width: 100%; max-height: 480px; object-fit: cover; border-radius: 12px; margin: 16px 0 24px; }
-.txp .btn { margin-top: 24px; }

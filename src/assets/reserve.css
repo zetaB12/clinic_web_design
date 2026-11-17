@@ -1,0 +1,21 @@
+/* Reserva: banda arena entre FAQ y Footer (oscuros) para que el CTA final destaque. */
+.cta { background: linear-gradient(180deg, #e4d7c6 0%, #ece2d3 100%); color: var(--espresso); }
+.cta .wrap { padding-top: 104px; padding-bottom: 104px; }
+.cta h2 { color: var(--espresso); font-size: clamp(30px, 4vw, 52px); line-height: 1.1; max-width: 760px; }
+.cta p.lead { color: #5f5348; }
+.cta input { background: #fbf8f3; color: var(--espresso); border: 1px solid #cdbca6; padding: 14px 18px; border-radius: 999px; min-width: 260px; }
+.cta input::placeholder { color: #8a7b6c; }
+.cta input:focus-visible { outline-color: #8a6b3f; }
+.cta input[aria-invalid="true"] { border-color: #9a3d2e; }
+.cta .btn { background: var(--espresso); border-color: var(--espresso); color: var(--bone); padding: 14px 32px; border-radius: 999px; }
+.cta .btn:hover { background: var(--taupe); opacity: 1; }
+.cta .msg { color: var(--espresso); font-weight: 500; }
+.cta-alt { margin-top: 8px; font-size: 15px; line-height: 22px; color: #5f5348; }
+.cta-alt a { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--espresso); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--champagne); }
+.cta-alt a:hover { color: #8a6b3f; }
+.cta .risk { color: #6b5d50; }
+@media (max-width: 640px) {
+  .cta .wrap { padding-top: 72px; padding-bottom: 72px; }
+  .cta form { flex-direction: column; align-items: stretch; }
+  .cta input, .cta .btn { width: 100%; min-width: 0; }
+}

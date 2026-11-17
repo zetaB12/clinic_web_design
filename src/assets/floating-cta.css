@@ -1,0 +1,68 @@
+.fcta {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: #4caf50;
+  color: var(--espresso);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  box-shadow:
+    0 10px 30px -8px rgba(30, 90, 34, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.35) inset;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition:
+    opacity 350ms var(--ease),
+    transform 350ms var(--ease),
+    background-color 250ms ease,
+    box-shadow 250ms ease;
+}
+.fcta svg {
+  color: var(--espresso);
+  flex: none;
+}
+.fcta.is-on {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.fcta:hover {
+  background: #66bb6a;
+  transform: translateY(-2px);
+}
+.fcta:active {
+  background: #43a047;
+  transform: none;
+}
+.fcta:focus-visible {
+  outline: 2px solid var(--espresso);
+  outline-offset: 3px;
+}
+@media (max-width: 640px) {
+  .fcta {
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    padding: 14px;
+  }
+  .fcta span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fcta {
+    transition: opacity 200ms linear;
+    transform: none;
+  }
+}

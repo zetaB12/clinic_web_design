@@ -63,7 +63,7 @@ export const TREATMENTS: Treatment[] = [
     name: "Toxina botulínica",
     description:
       "Suaviza las líneas de expresión de la frente y el contorno de ojos con un resultado natural.",
-    image: img("tratamientos/botox.png"),
+    image: img("tratamientos/botox.webp"),
     alt: "Cuidado avanzado de la piel del rostro",
     pos: "80% 40%",
     detail: {
@@ -168,7 +168,7 @@ export const TREATMENTS: Treatment[] = [
     name: "Ácido hialurónico",
     description:
       "Devuelve volumen, definición e hidratación en labios, pómulos y ojeras.",
-    image: img("tratamientos/acido.png"),
+    image: img("tratamientos/acido.webp"),
     alt: "Tratamiento de hidratación y volumen facial",
     pos: "85% 70%",
     detail: {
@@ -281,7 +281,7 @@ export const TREATMENTS: Treatment[] = [
     name: "Depilación láser",
     description:
       "Reducción progresiva y duradera del vello con tecnología segura para tu tipo de piel.",
-    image: img("tratamientos/depilacion.png"),
+    image: img("tratamientos/depilacion.webp"),
     alt: "Tratamiento corporal con tecnología médica",
     pos: "50% 50%",
     detail: {
@@ -394,7 +394,7 @@ export const TREATMENTS: Treatment[] = [
     name: "Pink Glow",
     description:
       "Protocolo de luminosidad que unifica el tono y aporta una piel fresca y radiante.",
-    image: img("tratamientos/pink.png"),
+    image: img("tratamientos/pink.webp"),
     alt: "Piel luminosa tras un tratamiento de glow",
     pos: "85% 55%",
     zoom: 1.7,

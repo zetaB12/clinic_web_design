@@ -1,5 +1,8 @@
 import { useState } from "react";
 import type { SyntheticEvent } from "react";
+import { WhatsappLogoIcon } from "@phosphor-icons/react";
+import { bookingMessage, whatsappHref } from "../data/contact";
+import "../assets/reserve.css";
 
 const Reserve = () => {
   const [msg, setMsg] = useState("");
@@ -27,7 +30,7 @@ const Reserve = () => {
   };
 
   return (
-    <section className="cta s-raised" id="reservar">
+    <section className="cta" id="reservar">
       <div className="wrap">
         <h2 className="title reveal">
           Empieza con una valoración de 40 minutos
@@ -59,6 +62,17 @@ const Reserve = () => {
         </form>
         <p className="msg" role="status">
           {msg}
+        </p>
+        <p className="cta-alt reveal">
+          ¿Prefieres escribirnos?{" "}
+          <a
+            href={whatsappHref(bookingMessage("una valoración"))}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <WhatsappLogoIcon size={18} aria-hidden="true" /> Reserva por
+            WhatsApp
+          </a>
         </p>
         <p className="risk reveal">
           Cancelación gratuita hasta 24 horas antes. La valoración se descuenta
