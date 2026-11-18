@@ -1,16 +1,15 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './index.css'
-import App from './App.tsx'
-import Layout from './components/Layout.tsx'
-import TreatmentDetail from './components/TreatmentDetail.tsx'
-import NotFound from './components/NotFound.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./index.css";
+import App from "./App.tsx";
+import Layout from "./components/Layout.tsx";
+import TreatmentDetail from "./components/TreatmentDetail.tsx";
+import NotFound from "./components/NotFound.tsx";
 
 // Sitio en la raíz del dominio (https://rejuvena.neal.pe/): sin basename.
-// El hosting (Cloudflare Pages) sirve index.html para cualquier ruta, vía public/_redirects.
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
@@ -22,4 +21,4 @@ createRoot(document.getElementById('root')!).render(
       </Routes>
     </BrowserRouter>
   </StrictMode>,
-)
+);
