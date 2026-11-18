@@ -7,14 +7,12 @@ import Layout from './components/Layout.tsx'
 import TreatmentDetail from './components/TreatmentDetail.tsx'
 import NotFound from './components/NotFound.tsx'
 
-// basename = base de Vite sin la barra final (/clinic_web_design en GitHub Pages).
-// `public/404.html` + el script de index.html permiten abrir /tratamientos/<slug>
-// directamente o recargarlo en GitHub Pages.
-const basename = import.meta.env.BASE_URL.replace(/\/$/, '')
+// Sitio en la raíz del dominio (https://rejuvena.neal.pe/): sin basename.
+// El hosting (Cloudflare Pages) sirve index.html para cualquier ruta, vía public/_redirects.
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter basename={basename}>
+    <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<App />} />

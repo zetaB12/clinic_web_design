@@ -1,7 +1,7 @@
 // Genera public/sitemap.xml a partir de los slugs de src/data/treatments.ts.
 import { readFileSync, writeFileSync } from "node:fs";
 
-const SITE = "https://zetab12.github.io/clinic_web_design";
+const SITE = "https://rejuvena.neal.pe";
 const src = readFileSync(new URL("../src/data/treatments.ts", import.meta.url), "utf8");
 const slugs = [...src.matchAll(/slug:\s*"([^"]+)"/g)].map((m) => m[1]);
 const today = new Date().toISOString().slice(0, 10);
